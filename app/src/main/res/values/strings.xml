@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">DataBase</string>
+    <string name="buttonSign">Registrarse</string>
+    <string name="buttonGoBack1">Volver</string>
+    <string name="buttonGoBack2">Volver</string>
+    <string name="txtName">Nombre</string>
+    <string name="txtSurname">Apellidos</string>
+    <string name="txtEmail">Correo electronico</string>
+    <string name="txtPassword">Contraseña</string>
+    <string name="txtConfirmPassword">Confirmar constraseña</string>
+    <string name="buttonDoSign">Registrarse</string>
+    <string name="buttonDoLogin">Iniciar sesion</string>
+    <string name="txtLoginEmail">Correo electronico</string>
+    <string name="txtLoginPassword">Contraseña</string>
+    <string name="ranking_de_jugadores">Ranking de Jugadores</string>
+    <string name="ranking">RANKING</string>
+    <string name="button_return">volver a inicio</string>
+    <string name="button_play_again">volver a jugar</string>
+    <string name="score_text">Puntuación:</string>
+    <string name="Start_Button">Empezar</string>
+    <string name="puntuaci_n">Puntuación:</string>
+    <string name="delete_acount">Eliminar Cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="editar_perfil">editar perfil</string>
+    <string name="save_changes">guardar cambios</string>
+    <string name="record">Record:</string>
+    <string name="buttonRestrictions">Restricciones</string>
+    <string name="tv1">Selecciona una comunidad</string>
+    <string name="tvMobility1">Restricción de mobilidad:</string>
+    <string name="tvCurfew1">Toque de queda:</string>
+    <string name="tvGroupLimit1">Límite grupal:</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+
+</resources>
