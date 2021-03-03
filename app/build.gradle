@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
+    id "org.sonarqube" version "3.1.1"
+    id("maven-publish")
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.example.database"
@@ -25,6 +27,14 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "adri-m173_A5_DS"
+        property "sonar.organization", "adri-m173"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
 
