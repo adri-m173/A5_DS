@@ -35,6 +35,8 @@ sonarqube {
         property "sonar.projectKey", "adri-m173_A5_DS"
         property "sonar.organization", "adri-m173"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.login", "0ffbc0dc8a0ae5118e26d65e6f91ceb5bd73dcbd"
+        property "sonar.branch.name", System.getenv("BRANCH")
     }
 }
 
