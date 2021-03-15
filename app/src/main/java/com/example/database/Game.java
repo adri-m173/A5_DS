@@ -37,6 +37,7 @@ public class Game extends AppCompatActivity {
     private TextView recordText;
     private ArrayList<ImageButton> noContagiados= new ArrayList<>();
     private ArrayList<Integer> notInfectedSource, infectedSource;
+    private Random r = new Random();
 
 
     @Override
@@ -83,8 +84,6 @@ public class Game extends AppCompatActivity {
 
 
     private int randomY() {
-        Random r = new Random();
-
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -96,8 +95,6 @@ public class Game extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = metrics.widthPixels;
-
-        Random r = new Random();
 
         return r.nextInt(width-button.getWidth());
     }
@@ -155,17 +152,14 @@ public class Game extends AppCompatActivity {
     }
 
     private int randomNotInfectedImage() {
-        Random r = new Random();
         return notInfectedSource.get(r.nextInt(notInfectedSource.size()-1));
     }
 
     private int randomInfectedImage() {
-        Random r = new Random();
         return infectedSource.get(r.nextInt(infectedSource.size()-1));
     }
 
     private int generateCharactersByDifficulty(int level) {
-        Random r = new Random();
         int characterNumber = r.nextInt(level)+level;
         //Faltaria refinar un poco la generacion de personajes en funcion de la dificultad
         return characterNumber;
