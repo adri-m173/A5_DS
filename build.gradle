@@ -1,3 +1,5 @@
+import groovy.swing.SwingBuilder
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -21,4 +23,78 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+String branch
+
+task gitBranch {
+    description "Esta tarea devuelve el nombre de la rama actual"
+    branch = ""
+    def branch_proc = 'git rev-parse --abbrev-ref HEAD'.execute()
+    branch_proc.in.eachLine { line -> branch = line }
+    branch_proc.err.eachLine { line -> println line }
+    branch_proc.waitFor()
+}
+
+task gitPull {
+    description "git pull en la rama actual o si pasamos -PbranchName='name-of-the-branch' haremos el pull en esa rama"
+    dependsOn "gitBranch"
+    doLast {
+        exec {
+            if (project.hasProperty('branchName')) {
+                branch = branchName
+            }
+            commandLine "git", "pull", "origin", branch.toString()
+        }
+    }
+}
+
+task gitAdd {
+    description "Esta tarea añade todos los elementos modificados"
+    doLast {
+        exec {
+            commandLine "git", "add", "*"
+        }
+    }
+}
+
+task gitCommit {
+    description "Esta tarea hace un commit con todos los elementos modificados con un mensaje que introduces"
+    doLast {
+        System.setProperty('java.awt.headless', 'false')
+        new SwingBuilder().edt {
+            dialog(modal: true, title: 'Introduce el mensaje para el commit', alwaysOnTop: true, resizable: false, locationRelativeTo: null, pack: true, show: true) {
+                vbox {
+                    label(text: "Introduce el mensaje para el commit:")
+                    def input1 = textField()
+                    button(defaultButton: true, text: 'OK', actionPerformed: {
+                        commitMessage = input1.text;
+                        dispose();
+                        exec {
+                            commandLine "git", "commit", "-m", commitMessage
+                        }
+                    })
+                }
+            }
+        }
+    }
+}
+
+task gitPush {
+    description "git push en la rama actual"
+    dependsOn "gitBranch"
+    doLast {
+        exec {
+            commandLine "git", "push", "origin", branch.toString()
+        }
+    }
+}
+
+task gitCompletePush {
+    description "Esta tarea hace todo el proceso para hacer un push (add, commit y push)"
+    dependsOn "gitAdd"
+    dependsOn "gitCommit"
+    dependsOn "gitPush"
+    tasks.findByName("gitCommit").mustRunAfter "gitAdd"
+    tasks.findByName("gitPush").mustRunAfter "gitCommit"
 }
